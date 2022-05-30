@@ -75,3 +75,29 @@ library(dotenv) # for reading .env file
 # )
 
 # print(fig)
+
+
+
+
+
+
+# Landing section
+
+# landing_data1 <- GET("https://api.spacexdata.com/v4/landpads")
+
+
+
+# landing_data3 <- fromJSON(content(landing_data1, "text"), flatten = TRUE)
+
+# landing_data4 <- as.data.frame(landing_data3)
+
+# landing_ds <- landing_data4[c("name", "landing_successes")]
+
+# fig <- plot_ly(
+#     x = landing_ds$name,
+#     y = landing_ds$landing_success,
+#     name = "landingSucess_count_per_launchpad",
+#     type = "bar"
+# )
+
+# print(fig)
