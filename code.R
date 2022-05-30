@@ -2,28 +2,76 @@ require("httr")
 require("jsonlite")
 
 
-library(plotly)
-library(dotenv)
-
-data1 <- GET("https://api.spacexdata.com/v4/launches/past")
+library(plotly) # for plotting
+library(dotenv) # for reading .env file
 
 
 
-data3 <- fromJSON(content(data1, "text"), flatten = TRUE)
 
-data4 <- as.data.frame(data3)
+# Launch section
 
-launch_dates <- format(as.POSIXct(data4$date_utc), format = "%Y")
-
-ds <- as.data.frame(table(launch_dates))
-
-fig <- plot_ly(
-    x = ds$launch_dates,
-    y = ds$Freq,
-    name = "launch_dates",
-    type = "bar"
-)
+# launch_data1 <- GET("https://api.spacexdata.com/v4/launches/past")
 
 
-py <- plot_ly(username = "jassuwu", key = Sys.getenv("PLOTLY_API_KEY"))
-# api_create(fig, filename = "SpaceX-DataVisualization_Launches")
+
+# launch_data3 <- fromJSON(content(launch_data1, "text"), flatten = TRUE)
+
+# launch_data4 <- as.data.frame(launch_data3)
+
+# launch_dates <- format(as.POSIXct(launch_data4$date_utc), format = "%Y")
+
+# ds <- as.data.frame(table(launch_dates))
+
+# fig <- plot_ly(
+#     x = ds$launch_dates,
+#     y = ds$Freq,
+#     name = "launch_dates",
+#     type = "bar"
+# )
+
+
+# py <- plot_ly(username = "jassuwu", key = Sys.getenv("PLOTLY_API_KEY"))
+# # api_create(fig, filename = "SpaceX-DataVisualization_Launches")
+
+
+
+
+
+
+# Starlink section
+
+# starlink_data1 <- GET("https://api.spacexdata.com/v4/starlink")
+
+
+
+# starlink_data3 <- fromJSON(content(starlink_data1, "text"), flatten = TRUE)
+
+# starlink_data4 <- as.data.frame(starlink_data3)
+
+# print(starlink_data4[40])
+
+
+
+
+# Core section
+
+# core_data1 <- GET("https://api.spacexdata.com/v4/cores")
+
+
+
+# core_data3 <- fromJSON(content(core_data1, "text"), flatten = TRUE)
+
+# core_data4 <- as.data.frame(core_data3)
+
+# # View(core_data4[c("serial", "reuse_count")])
+
+# core_ds <- as.data.frame(core_data4[c("serial", "reuse_count")])
+
+# fig <- plot_ly(
+#     x = core_ds$serial,
+#     y = core_ds$reuse_count,
+#     name = "core_reuse_count",
+#     type = "bar"
+# )
+
+# print(fig)
