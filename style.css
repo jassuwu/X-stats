@@ -10,9 +10,10 @@ body {
   right: 23rem; */
 }
 
-@media (max-width: 300px) {
+@media (max-width: 768px) {
   .landing-text {
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    text-align: center;
   }
 }
 .dummy {
