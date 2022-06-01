@@ -38,9 +38,11 @@ body {
 }
 
 .launches {
+  color: #fff;
   /* margin-top: 200px; */
   padding-top: 115px;
-  background: url(assets/spacex.jpg) no-repeat center center fixed;
+  background-color: #000000;
+  /* background: url(assets/spacex.jpg) no-repeat center center fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
