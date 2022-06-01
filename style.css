@@ -1,0 +1,56 @@
+body {
+  font-family: "Kanit", sans-serif;
+}
+
+.landing-text {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  /* position: absolute;
+  right: 23rem; */
+}
+
+@media (max-width: 300px) {
+  .landing-text {
+    font-size: 2rem;
+  }
+}
+.dummy {
+  height: 100vh;
+  width: 100%;
+  background: url(assets//landing.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+}
+
+.i-frame {
+  height: 100%;
+  width: 100%;
+}
+
+.c-height {
+  height: 400px;
+  max-height: 80vh;
+  /* padding-bottom: 2rem; */
+}
+
+.launches {
+  /* margin-top: 200px; */
+  padding-top: 115px;
+  background: url(assets/spacex.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.navbar-default {
+  transition: 500ms ease;
+  background: transparent;
+}
+.navbar-default.scrolled {
+  background: #000;
+}

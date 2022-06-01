@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <title>SpaceX Stats</title>
+</head>
+
+<body>
+    <header>
+        <nav id="primary-nav" class="navbar navbar-default navbar-expand-lg navbar-dark  fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#"><img style="max-width: 100%;" src="assets/brandname.png" alt=""></a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end align-items-center"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Visualizations
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#launch">Lanuches</a></li>
+                                <li><a class="dropdown-item" href="#landing">Landings</a></li>
+                                <li><a class="dropdown-item" href="#starlink">Starlink</a></li>
+                                <li><a class="dropdown-item" href="#core">Cores</a></li>
+                                <li><a class="dropdown-item" href="#pLoad_nat">Payload Nationalities</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#"><img style="width:28px;"
+                                    src="assets/github.png" alt=""></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dummy d-flex justify-content-center align-items-center">
+        <div class="container d-flex justify-content-md-end justify-content-center  align-items-center">
+            <h1 class=" landing-text">SpaceX. <br>Visualized.</h1>
+        </div>
+
+    </div>
+
+
+    <div id="launch" class="launches text-center">
+        <h1 class="text-center">Launch </h1>
+        <div class="container c-height">
+            <iframe class="i-frame rounded" src="https://chart-studio.plotly.com/~jassuwu/5.embed"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="landing" class="launches text-center">
+        <h1 class="text-center">Landing Success </h1>
+        <div class="container c-height">
+            <iframe class="i-frame rounded" src="https://chart-studio.plotly.com/~jassuwu/7.embed"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="starlink" class="launches text-center">
+        <h1 class="text-center">Starlink launches</h1>
+        <div class="container c-height">
+            <iframe class="i-frame rounded" src="https://chart-studio.plotly.com/~jassuwu/9.embed"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="core" class="launches text-center">
+        <h1 class="text-center">Core reuses</h1>
+        <div class="container c-height">
+            <iframe class="i-frame rounded" src="https://chart-studio.plotly.com/~jassuwu/11.embed"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    <div id="pLoad_nat" class="launches text-center" style="padding-bottom:60px;">
+        <h1 class="text-center">Payload Nationalities</h1>
+        <div class="container c-height">
+            <iframe class="i-frame rounded" src="https://chart-studio.plotly.com/~jassuwu/13.embed"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
