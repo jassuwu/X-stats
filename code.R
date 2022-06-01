@@ -40,16 +40,19 @@ library(dotenv) # for reading .env file
 
 # Starlink section
 
-# starlink_data1 <- GET("https://api.spacexdata.com/v4/starlink")
+starlink_data1 <- GET("https://api.spacexdata.com/v4/starlink")
 
 
 
-# starlink_data3 <- fromJSON(content(starlink_data1, "text"), flatten = TRUE)
+starlink_data3 <- fromJSON(content(starlink_data1, "text"), flatten = TRUE)
 
-# starlink_data4 <- as.data.frame(starlink_data3)
+starlink_data4 <- as.data.frame(starlink_data3)
 
-# print(starlink_data4[40])
-
+# View(starlink_data4$spaceTrack.LAUNCH_DATE)
+starlink_launch_dates <- format(as.POSIXct(starlink_data4$spaceTrack.LAUNCH_DATE), format = "%Y-%m")
+View(starlink_launch_dates)
+ds <- as.data.frame(table(starlink_launch_dates))
+View(ds)
 
 
 
