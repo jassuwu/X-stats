@@ -7,103 +7,117 @@ library(dotenv) # for reading .env file
 
 
 
-
+#####################################################################################
 # Launch section
 
-# launch_data1 <- GET("https://api.spacexdata.com/v4/launches/past")
+launch_data1 <- GET("https://api.spacexdata.com/v4/launches/past")
 
+launch_data3 <- fromJSON(content(launch_data1, "text"), flatten = TRUE)
+launch_data4 <- as.data.frame(launch_data3)
+launch_dates <- format(as.POSIXct(launch_data4$date_utc), format = "%Y")
+launch_ds <- as.data.frame(table(launch_dates))
 
+launch_fig <- plot_ly(
+    x = launch_ds$launch_dates,
+    y = launch_ds$Freq,
+    name = "launch_dates",
+    type = "bar"
+)
 
-# launch_data3 <- fromJSON(content(launch_data1, "text"), flatten = TRUE)
+#  print(launch_fig)
 
-# launch_data4 <- as.data.frame(launch_data3)
+#####################################################################################
+# Landing section
 
-# launch_dates <- format(as.POSIXct(launch_data4$date_utc), format = "%Y")
+landing_data1 <- GET("https://api.spacexdata.com/v4/landpads")
 
-# ds <- as.data.frame(table(launch_dates))
+landing_data3 <- fromJSON(content(landing_data1, "text"), flatten = TRUE)
+landing_data4 <- as.data.frame(landing_data3)
+landing_ds <- landing_data4[c("name", "landing_successes")]
 
-# fig <- plot_ly(
-#     x = ds$launch_dates,
-#     y = ds$Freq,
-#     name = "launch_dates",
-#     type = "bar"
-# )
+landing_fig <- plot_ly(
+    x = landing_ds$name,
+    y = landing_ds$landing_success,
+    name = "landingSucess_count_per_launchpad",
+    type = "bar"
+)
 
+# print(landing_fig)
 
-# py <- plot_ly(username = "jassuwu", key = Sys.getenv("PLOTLY_API_KEY"))
-# # api_create(fig, filename = "SpaceX-DataVisualization_Launches")
-
-
-
-
-
-
+#####################################################################################
 # Starlink section
 
 starlink_data1 <- GET("https://api.spacexdata.com/v4/starlink")
 
-
-
 starlink_data3 <- fromJSON(content(starlink_data1, "text"), flatten = TRUE)
-
 starlink_data4 <- as.data.frame(starlink_data3)
-
-# View(starlink_data4$spaceTrack.LAUNCH_DATE)
 starlink_launch_dates <- format(as.POSIXct(starlink_data4$spaceTrack.LAUNCH_DATE), format = "%Y-%m")
-View(starlink_launch_dates)
-ds <- as.data.frame(table(starlink_launch_dates))
-View(ds)
+starlink_ds <- as.data.frame(table(starlink_launch_dates))
 
+starlink_fig <- plot_ly(
+    x = starlink_ds$starlink_launch_dates,
+    y = starlink_ds$Freq,
+    name = "starlink_launch_dates",
+    type = "scatter",
+    mode = "lines+markers"
+)
 
+# print(starlink_fig)
 
+#####################################################################################
 # Core section
 
-# core_data1 <- GET("https://api.spacexdata.com/v4/cores")
+core_data1 <- GET("https://api.spacexdata.com/v4/cores")
 
 
+core_data3 <- fromJSON(content(core_data1, "text"), flatten = TRUE)
+core_data4 <- as.data.frame(core_data3)
+core_ds <- as.data.frame(core_data4[c("serial", "reuse_count")])
 
-# core_data3 <- fromJSON(content(core_data1, "text"), flatten = TRUE)
+core_fig <- plot_ly(
+    x = core_ds$serial,
+    y = core_ds$reuse_count,
+    name = "core_reuse_count",
+    type = "bar"
+)
 
-# core_data4 <- as.data.frame(core_data3)
+# print(core_fig)
 
-# # View(core_data4[c("serial", "reuse_count")])
+#####################################################################################
+# Payload nationalities
 
-# core_ds <- as.data.frame(core_data4[c("serial", "reuse_count")])
+pLoad_data1 <- GET("https://api.spacexdata.com/v4/payloads")
 
-# fig <- plot_ly(
-#     x = core_ds$serial,
-#     y = core_ds$reuse_count,
-#     name = "core_reuse_count",
-#     type = "bar"
-# )
+pLoad_data3 <- fromJSON(content(pLoad_data1, "text"), flatten = TRUE)
+pLoad_data4 <- as.data.frame(pLoad_data3)
 
-# print(fig)
+nationalities <- c()
+# Making a nationalities table
+for (p in pLoad_data4$nationalities) {
+    if (length(p) != 0) {
+        nationalities <- append(nationalities, p)
+    }
+}
+pLoad_nat_ds <- as.data.frame(table(nationalities))
+pLoad_nat_labels <- pLoad_nat_ds$nationalities
+pLoad_nat_values <- pLoad_nat_ds$Freq
 
+pLoad_nat_fig <- plot_ly(
+    type = "pie", labels = pLoad_nat_labels, values = pLoad_nat_values,
+    textinfo = "label+percent",
+    insidetextorientation = "radial"
+)
 
+# print(pLoad_nat_fig)
 
+######################################################################################
+# Chart-Studio
 
+py <- ggplotly(username = "jassuwu", key = Sys.getenv("PLOTLY_API_KEY"))
+api_create(launch_fig, filename = "x_stats_launch")
+api_create(landing_fig, filename = "x_stats_landing")
+api_create(starlink_fig, filename = "x_stats_starlink")
+api_create(core_fig, filename = "x_stats_core")
+api_create(pLoad_nat_fig, filename = "x_stats_pLoad_nat")
 
-
-# Landing section
-
-# landing_data1 <- GET("https://api.spacexdata.com/v4/landpads")
-
-
-
-# landing_data3 <- fromJSON(content(landing_data1, "text"), flatten = TRUE)
-
-# landing_data4 <- as.data.frame(landing_data3)
-
-# landing_ds <- landing_data4[c("name", "landing_successes")]
-
-# fig <- plot_ly(
-#     x = landing_ds$name,
-#     y = landing_ds$landing_success,
-#     name = "landingSucess_count_per_launchpad",
-#     type = "bar"
-# )
-
-# print(fig)
-
-
-# testing branch
+######################################################################################
